@@ -1,6 +1,7 @@
 (function(angular) {
   var AppController = function($scope, Item) {
-    Item.query(function(response) {
+    
+	  Item.query(function(response) {
       $scope.items = response ? response : [];
     });
     
