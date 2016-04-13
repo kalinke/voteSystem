@@ -26,9 +26,9 @@ public class VoteServiceImp implements VoteService{
 	}
 
 	@Override
-	public void vote(Vote vote){
+	public Vote vote(Vote vote){
 		vote.setVoteDate(new Date());
-		voteRepository.save(vote);
+		return (Vote) voteRepository.save(vote);
 	}
 	
 	@Override

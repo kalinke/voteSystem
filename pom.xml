@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.globo</groupId>
-	<artifactId>bbvoting</artifactId>
+	<artifactId>bbbvoting</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>bbvoting</name>
+	<name>bbbvoting</name>
 	<description>BBB Voting Project</description>
 
 	<parent>

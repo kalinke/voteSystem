@@ -5,7 +5,7 @@ import com.globo.bbbvoting.vo.VoteResultsVO;
 
 public interface VoteService {
 
-	void vote(Vote vote);
+	Vote vote(Vote vote);
 	
 	VoteResultsVO getPartialResults();
 }

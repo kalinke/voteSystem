@@ -26,11 +26,8 @@ public class VoteSearchRepositoryImpl implements VoteSearchRepository{
 	@Override
 	@Transactional(readOnly = true)
 	public VoteResultsVO countResults() {
-		
 		String query = "SELECT COUNT(CASE WHEN OPTION = 1 THEN 1 END) AS OPTION_ONE, COUNT(CASE WHEN OPTION = 2 THEN 1 END) AS OPTION_TWO FROM vote;";
-		
 		VoteResultsVO result = (VoteResultsVO) jdbcTemplate.queryForObject(query, new VoteSearchRowMapper());
-		
         return result;
 	}
 	
