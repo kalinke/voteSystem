@@ -18,6 +18,7 @@ public class Vote {
 	@Column(name="OPTION")
 	private Integer option;
 
+	@Column(name="VOTE_DATE")
 	private Date voteDate;
 	
 	public Integer getId() {

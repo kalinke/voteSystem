@@ -1,4 +1,4 @@
-package com.globo;
+package com.globo.bbbvoting;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
