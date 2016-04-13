@@ -1,18 +1,22 @@
-package com.globo.entity;
+package com.globo.bbbvoting.domain;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
+@Entity(name = "VOTE")
 public class Vote {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
+
+	@Column(name="OPTION")
+	private Integer option;
 
 	private Date voteDate;
 	
@@ -21,6 +25,12 @@ public class Vote {
 	}
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	public Integer getOption() {
+		return option;
+	}
+	public void setOption(Integer option) {
+		this.option = option;
 	}
 	public Date getVoteDate() {
 		return voteDate;
