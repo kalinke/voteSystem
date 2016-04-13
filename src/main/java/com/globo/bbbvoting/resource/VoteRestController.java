@@ -28,7 +28,7 @@ public class VoteRestController {
 		return "OK";
 	}
 
-	
+	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<VoteResultsVO> vote(@RequestBody Vote vote) {
 		getVoteService().vote(vote);
 		VoteResultsVO partialResults = voteService.getPartialResults();
