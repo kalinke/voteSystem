@@ -11,6 +11,15 @@ import javax.persistence.Id;
 @Entity(name = "VOTE")
 public class Vote {
 
+	public Vote() {
+	}
+
+	public Vote(Integer id, Integer option, Date voteDate) {
+		this.id = id;
+		this.option = option;
+		this.voteDate = voteDate;
+	}
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;

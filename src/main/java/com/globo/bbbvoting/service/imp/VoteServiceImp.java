@@ -20,7 +20,7 @@ public class VoteServiceImp implements VoteService{
 	private VoteSearchRepository voteSearchRepository;
 	
 	@Autowired
-	private VoteServiceImp(VoteRepository voteRepository, VoteSearchRepository voteSearchRepository){
+	public VoteServiceImp(VoteRepository voteRepository, VoteSearchRepository voteSearchRepository){
 		this.voteRepository = voteRepository;
 		this.voteSearchRepository = voteSearchRepository;
 	}

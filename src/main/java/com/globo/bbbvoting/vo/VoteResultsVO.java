@@ -2,6 +2,14 @@ package com.globo.bbbvoting.vo;
 
 public class VoteResultsVO {
 
+	public VoteResultsVO(){
+	}
+
+	public VoteResultsVO(Integer optionOne, Integer optionTwo){
+		this.optionOne = optionOne;
+		this.optionTwo = optionTwo;
+	}
+	
 	private Integer optionOne;
 	private Integer optionTwo;
 	

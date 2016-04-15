@@ -32,7 +32,7 @@ public class VoteRestController {
 	public ResponseEntity<VoteResultsVO> vote(@RequestBody Vote vote) {
 		try{
 			assertValidVote(vote);
-			getVoteService().vote(vote);
+			voteService.vote(vote);
 			VoteResultsVO partialResults = voteService.getPartialResults();
 			return new ResponseEntity<VoteResultsVO>(partialResults, HttpStatus.OK);
 		}catch(InvalidVoteException i){
@@ -43,14 +43,6 @@ public class VoteRestController {
 			LOGGER.debug("Error: ", e);
 			return new ResponseEntity<VoteResultsVO>(HttpStatus.BAD_REQUEST);
 		}
-	}
-
-	public VoteService getVoteService() {
-		return voteService;
-	}
-
-	public void setVoteService(VoteService voteService) {
-		this.voteService = voteService;
 	}
 	
 	private void assertValidVote(Vote vote) throws InvalidVoteException{
