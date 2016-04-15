@@ -24,7 +24,7 @@ public class Vote {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column(name="OPTION")
+	@Column(name="USER_OPTION")
 	private Integer option;
 
 	@Column(name="VOTE_DATE")
