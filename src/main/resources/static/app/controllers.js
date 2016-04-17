@@ -25,7 +25,7 @@
       });
     };
   };
-  
+    
   AppController.$inject = ['$scope', 'Item'];
   angular.module("myApp.controllers").controller("AppController", AppController);
 }(angular));
