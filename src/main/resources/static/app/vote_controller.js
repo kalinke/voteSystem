@@ -1,6 +1,6 @@
 'use strict';
 
-App.controller('VoteController', ['$scope', '$window', 'VoteService', function($scope, $window, VoteService) {
+App.controller('VoteController', ['$scope', '$window', '$location', 'VoteService', function($scope, $window, $location, VoteService) {
 			var self = this;
 			self.vote = {
 				id : null,
@@ -18,7 +18,7 @@ App.controller('VoteController', ['$scope', '$window', 'VoteService', function($
 				function(response){
 					self.partialResults.optionOnePercentage = response.data.optionOnePercentage;
 					self.partialResults.optionTwoPercentage = response.data.optionTwoPercentage;
-					$window.location.href = '/results.html';
+					$location.path('/resultado');
 				},
 				function(errResponse) {
 					console.error('Error submitting vote');

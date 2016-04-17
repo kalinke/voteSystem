@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="./bower_components/bootstrap-css-only/css/bootstrap.min.css" />
     <link rel="stylesheet" href="./css/globocom.css" />
   </head>
-  <body ng-app="myApp" ng-controller="VoteController">
+  <body ng-app="myApp">
 
   <nav class="navbar navbar-default navbar-static-top">
     <div class="container">
@@ -15,7 +15,7 @@
             <span class="icon-bar"><a href="http://g1.globo.com" class="barra-item-noticias barra-item-g1">globoesporte</a></span>
             <span class="icon-bar"><a href="http://g1.globo.com" class="barra-item-noticias barra-item-gshow-famosos">gshow</a></span>
             <span class="icon-bar"><a href="http://g1.globo.com" class="barra-item-noticias barra-item-gshow-famosos">famosos & etc</a></span>
-            <span class="icon-bar"><a href="http://g1.globo.com" class="barra-item-noticias barra-item-globo">videos</a></span>
+            <span class="icon-bar"><a href="http://g1.globo.com" class="barra-item-noticias barra-item-globo">vídeos</a></span>
         </div>
       </div>
   </nav>
@@ -38,34 +38,19 @@
 	        <div class="col-md-2"></div>
 	    </div>
 	    <br>
-	    <div class="row">
-	    	<div class="col-md-2"></div>
-	        <div class="col-md-3">
-			  <span class="op">
-			  	<h3><b>Participante 1</b></h3>        	
-	          	<img class="op" ng-src="img/op1.png" ng-click="setVote(1)"/>
-	          	<p><br>Para eliminar o <b>Participante 1</b> pelo telefone disque <br><b>0800-123-001</b> ou mande um SMS para <b>8001</b></p>
-		      </span>
-	        </div>
-	        <div class="col-md-1"></div>
-	        <div class="col-md-3">
-		      <span class="op">
-		      <h3><b>Participante 2</b></h3>
-		        <img class="op" ng-src="img/op2.png" ng-click="setVote(2)"/>
-		        <p><br>Para eliminar o <b>Participante 2</b> pelo telefone disque <br><b>0800-123-002</b> ou mande um SMS para <b>8002</b></p>
-	          </span>
-	        </div>
-	        <div class="col-md-2"></div>
-	    </div>
+	   	<div ng-view></div>	        
     </div>
     <hr>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script type="text/javascript" src="./bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="./bower_components/angular-route/angular-route.min.js"></script>
     <script type="text/javascript" src="./bower_components/angular-resource/angular-resource.min.js"></script>
     <script type="text/javascript" src="./bower_components/lodash/dist/lodash.min.js"></script>
     <script type="text/javascript" src="./app/app.js"></script>
     <script type="text/javascript" src="./app/vote_controller.js"></script>
     <script type="text/javascript" src="./app/vote_services.js"></script>
+    <script type="text/javascript" src="./app/result_controller.js"></script>
+    <script type="text/javascript" src="./app/result_services.js"></script>
   </body>
 </html>

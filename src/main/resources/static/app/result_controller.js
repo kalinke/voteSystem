@@ -2,7 +2,8 @@
 
 
 App.controller('ResultController', ['$scope', 'ResultService', function($scope, ResultService) {
-	
+	$scope.treta = 'TretaSSS';
+	$scope.votoUm = 50;
 	$scope.partialResults = {
 			optionOnePercentage: '',
 			optionTwoPercentage: ''
