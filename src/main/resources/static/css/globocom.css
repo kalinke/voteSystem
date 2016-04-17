@@ -39,12 +39,18 @@ a:hover{
 }
 
 .op:hover img {
+	cursor: pointer; 
+	cursor: hand;
     border: solid 5px orange;
     margin: -5px;
 }
 
-.barra
-{
+
+.opResult img{
+	border: none;
+}
+
+.barra {
     background-repeat: repeat-x;
     background-image: url("/img/bar.png");
 }

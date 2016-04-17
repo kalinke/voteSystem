@@ -1,7 +1,5 @@
 package com.globo.bbbvoting.resource;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.globo.bbbvoting.domain.Vote;
 import com.globo.bbbvoting.service.VoteService;
 import com.globo.bbbvoting.service.exception.InvalidVoteException;
-import com.globo.bbbvoting.vo.VoteResultsHourlyVO;
 import com.globo.bbbvoting.vo.VoteResultsVO;
 
 @RestController
@@ -32,14 +29,14 @@ public class VoteRestController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<VoteResultsHourlyVO>> getVotes() {
+	public ResponseEntity<VoteResultsVO> getVotes() {
 		try{
-			List<VoteResultsHourlyVO> results = voteService.getResults();
-			return new ResponseEntity<List<VoteResultsHourlyVO>>(results, HttpStatus.OK);
+			VoteResultsVO partialResults = voteService.getPartialResults();
+			return new ResponseEntity<VoteResultsVO>(partialResults, HttpStatus.OK);
 		}catch(Exception e){
 			LOGGER.error("Not recognized exception occurred " + e.getMessage());
 			LOGGER.debug("Error: ", e);
-			return new ResponseEntity<List<VoteResultsHourlyVO>>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<VoteResultsVO>(HttpStatus.BAD_REQUEST);
 		}
 	}
 	
@@ -48,8 +45,7 @@ public class VoteRestController {
 		try{
 			assertValidVote(vote);
 			voteService.vote(vote);
-			VoteResultsVO partialResults = voteService.getPartialResults();
-			return new ResponseEntity<VoteResultsVO>(partialResults, HttpStatus.OK);
+			return new ResponseEntity<VoteResultsVO>(HttpStatus.OK);
 		}catch(InvalidVoteException i){
 			LOGGER.error("Invalid vote option sent to server");
 			return new ResponseEntity<VoteResultsVO>(HttpStatus.UNPROCESSABLE_ENTITY);
