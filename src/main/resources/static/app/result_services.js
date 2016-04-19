@@ -3,7 +3,7 @@
 App.factory('ResultService', ['$http', '$q', function($http, $q) {
 			return {
 				listPartialVotes : function() {
-					return $http.get('http://localhost:8080/vote').then(
+					return $http.get('/vote').then(
 							function(response) {
 								return response;
 							}, function(errResponse) {

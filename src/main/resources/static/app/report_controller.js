@@ -18,7 +18,7 @@ $scope.gridOptions = {
 	    }
 	};
 
-	$http.get('http://localhost:8080/report')
+	$http.get('/report')
 	  .success(function(data) {
 	    data.forEach( function(row) {
 	      row.registered = Date.parse(row.registered);

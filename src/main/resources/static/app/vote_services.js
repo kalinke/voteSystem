@@ -3,7 +3,7 @@
 App.factory('VoteService', ['$http', '$q', function($http, $q) {
 			return {
 				submitVote : function(vote) {
-					return $http.post('http://localhost:8080/vote', vote).then(
+					return $http.post('/vote', vote).then(
 							function(response) {
 								return response;
 							}, function(errResponse) {
@@ -12,7 +12,7 @@ App.factory('VoteService', ['$http', '$q', function($http, $q) {
 							});
 				},
 				listPartialVotes : function() {
-					return $http.get('http://localhost:8080/vote').then(
+					return $http.get('/vote').then(
 							function(response) {
 								return response;
 							}, function(errResponse) {
@@ -21,7 +21,7 @@ App.factory('VoteService', ['$http', '$q', function($http, $q) {
 							});
 				},
 				getProperties : function() {
-					return $http.get('http://localhost:8080/angular.property').then(
+					return $http.get('angular.property').then(
 							function (response) {
 								return response;						
 				      });

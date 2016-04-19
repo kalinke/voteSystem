@@ -13,12 +13,13 @@ App.controller('VoteController', ['$scope', '$window', '$location',
 					optionTwoPercentage: ''
 			};
 			$scope.gRecaptchaResponse = '';			
-			self.enableCaptcha = true;
+			self.enableCaptcha = '';
 			
 			$scope.checkEnableCaptcha = function(){
 				VoteService.getProperties().then(
-					function(response){
-						self.enableCaptcha = response.data.enableCaptcha; 
+					function(response){						
+						self.enableCaptcha = response.data.enableCaptcha;
+						console.log('CAPTCHA enabled? ' + response.data.enableCaptcha);
 					}
 				)
 			};
