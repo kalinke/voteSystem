@@ -28,7 +28,7 @@ public class ReportRestController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<ReportVO>> getVotes() {
+	public ResponseEntity<List<ReportVO>> getReport() {
 		try{
 			List<ReportVO> report = reportService.getReport();
 			return new ResponseEntity<List<ReportVO>>(report, HttpStatus.OK);

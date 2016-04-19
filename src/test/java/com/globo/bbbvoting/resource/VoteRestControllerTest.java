@@ -46,11 +46,8 @@ public class VoteRestControllerTest {
 		ResponseEntity<VoteResultsVO> response = voteRestController.vote(vote);
         
 		assertNotNull(response);
-		assertNotNull(response.getBody());
-		assertEquals(new Float(50), Float.valueOf(response.getBody().getOptionOnePercentage()));
-		assertEquals(new Float(50), Float.valueOf(response.getBody().getOptionTwoPercentage()));
+		assertEquals(HttpStatus.OK, response.getStatusCode());
 		verify(voteService, times(1)).vote(vote);
-		verify(voteService, times(1)).getPartialResults();
 		verifyNoMoreInteractions(voteService);
 	}
 	

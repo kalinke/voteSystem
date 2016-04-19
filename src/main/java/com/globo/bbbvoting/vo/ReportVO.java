@@ -6,6 +6,13 @@ public class ReportVO {
 
 	public ReportVO(){
 	}
+
+	public ReportVO(Date date, String hour, Long optionOne, Long optionTwo){
+		this.date = date;
+		this.hour = hour;
+		this.optionOne = optionOne;
+		this.optionTwo = optionTwo;
+	}
 	
 	private Date date;
 	private String hour;

@@ -8,7 +8,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -21,7 +20,7 @@ import com.globo.bbbvoting.BBBVotingApplication;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = BBBVotingApplication.class)
 @WebAppConfiguration
-public class VoteRestControllerIntegrationTest {
+public class ReportRestControllerIntegrationTest {
 
     @Autowired
     private WebApplicationContext webApplicationContext;
@@ -36,15 +35,8 @@ public class VoteRestControllerIntegrationTest {
     @Test
     public void shouldVote() throws Exception {
     	mockMvc.perform(
-    			post("/vote/").contentType(MediaType.APPLICATION_JSON_UTF8)
-    			.content("{\"option\":\"1\"}")).andExpect(status().is(200));
-    }
-
-    @Test
-    public void shouldNotVote() throws Exception {
-    	mockMvc.perform(
-    			post("/vote/").contentType(MediaType.APPLICATION_JSON_UTF8)
-    			.content("{\"option\":\"99\"}")).andExpect(status().is(HttpStatus.UNPROCESSABLE_ENTITY.value()));
+    			get("/report/").contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(status().is(200));
+    System.out.println(mockMvc);
     }
 	
 }
