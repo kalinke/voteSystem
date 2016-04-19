@@ -1,6 +1,7 @@
 'use strict';
 
-App.controller('VoteController', ['$scope', '$window', '$location', 'VoteService', function($scope, $window, $location, VoteService) {
+App.controller('VoteController', ['$scope', '$window', '$location', 'VoteService', 'noCAPTCHA', function($scope, $window, $location, VoteService) {
+			$scope.gRecaptchaResponse = '';
 			var self = this;
 			self.vote = {
 				id : null,
@@ -11,17 +12,21 @@ App.controller('VoteController', ['$scope', '$window', '$location', 'VoteService
 					optionOnePercentage: '',
 					optionTwoPercentage: ''
 				};
-
+			
 			$scope.setVote = function(option){
-				self.vote.option = option;
-				VoteService.submitVote(self.vote).then(
-				function(response){
-					self.partialResults.optionOnePercentage = response.data.optionOnePercentage;
-					self.partialResults.optionTwoPercentage = response.data.optionTwoPercentage;
-					$location.path('/resultado');
-				},
-				function(errResponse) {
-					console.error('Error submitting vote');
-				});
-			};
+				
+				<!-- Apenas um mock de implementacao de captcha rodando em localhost para verificar humanos --> 
+				if($scope.gRecaptchaResponse==""){
+					alert('Por favor resolva o CAPTCHA antes de votar!');
+				}else{
+					self.vote.option = option;
+					VoteService.submitVote(self.vote).then(
+					function(response){
+						$location.path('/resultado');
+					},
+					function(errResponse) {
+						console.error('Error submitting vote');
+					});
+				}
+			};		
 }]);

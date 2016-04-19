@@ -1,7 +1,7 @@
 package com.globo.bbbvoting.service.imp;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -14,62 +14,64 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 
 import com.globo.bbbvoting.domain.Vote;
-import com.globo.bbbvoting.resource.VoteRestController;
-import com.globo.bbbvoting.service.VoteService;
+import com.globo.bbbvoting.repository.VoteRepository;
+import com.globo.bbbvoting.repository.VoteSearchRepository;
+import com.globo.bbbvoting.service.imp.VoteServiceImp;
 import com.globo.bbbvoting.vo.VoteResultsVO;
 
 @RunWith(MockitoJUnitRunner.class)
 public class VoteServiceImpTest {
 
 	@Mock
-	private VoteService voteService;
+	private VoteRepository voteRepository;
+	@Mock	
+	private VoteSearchRepository voteSearchRepository;
 
-	private VoteRestController voteRestController;
+	private VoteServiceImp voteServiceImp;
 
 	@Before
 	public void initializate() {
-		this.voteRestController = new VoteRestController(voteService);
+		this.voteServiceImp = new VoteServiceImp(voteRepository, voteSearchRepository);
 	}
 
 	@Test
 	public void shouldVote() {
 		//Given
 		Vote vote = new Vote(null, 1, null);
-		VoteResultsVO result = new VoteResultsVO(10,10);
+		Date voteDate = new Date();
+		Vote dbVote = new Vote(1, 1, voteDate);
 
-		when(voteService.getPartialResults()).thenReturn(result);
+		//When
+		when(voteRepository.save(vote)).thenReturn(dbVote);
 		
-		ResponseEntity<VoteResultsVO> response = voteRestController.vote(vote);
+		Vote response = voteServiceImp.vote(vote);
         
+		//Then
 		assertNotNull(response);
-		assertNotNull(response.getBody());
-		assertEquals(new Float(50), Float.valueOf(response.getBody().getOptionOnePercentage()));
-		assertEquals(new Float(50), Float.valueOf(response.getBody().getOptionTwoPercentage()));
-		verify(voteService, times(1)).vote(vote);
-		verify(voteService, times(1)).getPartialResults();
-		verifyNoMoreInteractions(voteService);
+		assertEquals(1, response.getId().intValue());
+		assertEquals(1, response.getOption().intValue());
+		verify(voteRepository, times(1)).save(vote);
+		verifyNoMoreInteractions(voteRepository, voteSearchRepository);
+	}
+
+	@Test
+	public void shouldGetPartialResults() {
+		//Given
+		VoteResultsVO result = new VoteResultsVO(10,10);
+		
+		//When
+		when(voteSearchRepository.getPartialResults()).thenReturn(result);
+		
+		VoteResultsVO response = voteServiceImp.getPartialResults();
+		
+		//Then
+		assertNotNull(response);
+		assertEquals(new Float(50), Float.valueOf(response.getOptionOnePercentage()));
+		assertEquals(new Float(50), Float.valueOf(response.getOptionTwoPercentage()));
+		verify(voteSearchRepository, times(1)).getPartialResults();
+		verifyNoMoreInteractions(voteRepository, voteSearchRepository);
 	}
 	
-	@Test
-	public void shouldNotVote() {
-		//Given
-		Date voteDate = new Date();
-		Vote vote = new Vote(null, 10, voteDate);
-		VoteResultsVO result = new VoteResultsVO(10,10);
-		
-		when(voteService.getPartialResults()).thenReturn(result);
-		
-		ResponseEntity<VoteResultsVO> response = voteRestController.vote(vote);
-		
-		assertNotNull(response);
-		assertNull(response.getBody());
-		assertEquals(HttpStatus.UNPROCESSABLE_ENTITY, response.getStatusCode());
-		verify(voteService, times(0)).vote(vote);
-		verify(voteService, times(0)).getPartialResults();
-		verifyNoMoreInteractions(voteService);
-	}
 }

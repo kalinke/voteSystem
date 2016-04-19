@@ -7,9 +7,7 @@
 				<b>Participante 1</b>
 			</h3> <img class="op" ng-src="img/op1.png" ng-click="setVote(1)" />
 			<p>
-				<br>Para eliminar o <b>Participante 1</b> pelo telefone disque
-				<br>
-				<b>0800-123-001</b> ou mande um SMS para <b>8001</b>
+				<br>Para eliminar o <b>Participante 1</b> pelo telefone disque <b>0800-123-001</b> ou mande um SMS para <b>8001</b>
 			</p>
 		</span>
 	</div>
@@ -20,9 +18,24 @@
 				<b>Participante 2</b>
 			</h3> <img class="op" ng-src="img/op2.png" ng-click="setVote(2)" />
 			<p>
-				<br>Para eliminar o <b>Participante 2</b> pelo telefone disque
-				<br>
-				<b>0800-123-002</b> ou mande um SMS para <b>8002</b>
+				<br>Para eliminar o <b>Participante 2</b> pelo telefone disque <b>0800-123-002</b> ou mande um SMS para <b>8002</b>
 			</p>
 		</span>
 	</div>
+	<div class="col-md-3"></div>
+	
+    <div class="container">
+	     <div class="row">
+	     	<div class="col-md-4"></div>
+	     	<div class="col-md-4">
+	  			<no-captcha
+				    g-recaptcha-response="gRecaptchaResponse"
+				    theme='light'
+				    control="noCaptchaControl"
+				    site-key="6LcPvh0TAAAAAL7BJgw86fEMTiRbkQJ8J6JupmpT">
+				</no-captcha>
+	        </div>
+	    </div>
+    </div>	
+	
+</div>

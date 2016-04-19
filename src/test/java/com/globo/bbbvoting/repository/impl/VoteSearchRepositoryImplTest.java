@@ -41,7 +41,7 @@ public class VoteSearchRepositoryImplTest {
 		//Whend
 		doReturn(result).when(jdbcTemplate).queryForObject(anyString(), any(VoteSearchRowMapper.class)); 
 		
-		VoteResultsVO response = voteSearchRepositoryImpl.countResults();
+		VoteResultsVO response = voteSearchRepositoryImpl.getPartialResults();
         
 		//Then
 		assertNotNull(response);

@@ -12,6 +12,4 @@ App.factory('ResultService', ['$http', '$q', function($http, $q) {
 							});
 				}
 			};
-		} 
-		
-]);
+		} ]);

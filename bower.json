@@ -3,6 +3,9 @@
   "dependencies": {
     "angular": "~1.5.3",
     "angular-resource": "~1.5.3",
-    "bootstrap-css-only": "~3.3.6"
+    "bootstrap-css-only": "~3.3.6",
+    "highcharts": "^4.2.4",
+    "angular-recaptcha": "^3.0.3",
+    "angular-no-captcha": "^0.6.0"
   }
 }

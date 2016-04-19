@@ -1,7 +1,6 @@
 package com.globo.bbbvoting.service.imp;
 
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +10,6 @@ import com.globo.bbbvoting.domain.Vote;
 import com.globo.bbbvoting.repository.VoteRepository;
 import com.globo.bbbvoting.repository.VoteSearchRepository;
 import com.globo.bbbvoting.service.VoteService;
-import com.globo.bbbvoting.vo.VoteResultsHourlyVO;
 import com.globo.bbbvoting.vo.VoteResultsVO;
 
 @Service
@@ -35,13 +33,7 @@ public class VoteServiceImp implements VoteService{
 	
 	@Override
 	public VoteResultsVO getPartialResults() {
-		VoteResultsVO partialResults = voteSearchRepository.countResults();
+		VoteResultsVO partialResults = voteSearchRepository.getPartialResults();
 		return partialResults;
-	}
-
-	@Override
-	public List<VoteResultsHourlyVO> getResults() {
-		List<VoteResultsHourlyVO> hourlyVO = voteSearchRepository.countResultsHourly();
-		return hourlyVO;
 	}
 }

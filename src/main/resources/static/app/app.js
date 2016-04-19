@@ -1,8 +1,8 @@
 'use strict';
 
-var App = angular.module('myApp', ['ngRoute']);
+var App = angular.module('myApp', ['ngRoute', 'ui.grid', 'highcharts-ng', 'noCAPTCHA']);
 
-App.config(function ($routeProvider) { 
+App.config(function ($routeProvider, $locationProvider) { 
 	  $routeProvider 
 	    .when('/', { 
 	      controller: 'VoteController', 
@@ -10,6 +10,11 @@ App.config(function ($routeProvider) {
 	    })
 	    .when('/resultado', { 
 	    	controller: 'ResultController', 
-	    	templateUrl: 'resultado.html' 
+	    	templateUrl: 'result.html' 
 	    })
+	    .when('/relatorio', { 
+	    	controller: 'ReportController', 
+	    	templateUrl: 'relatorio.html' 
+	    })
+	    .otherwise({redirectTo: '/'});
 	});
