@@ -19,6 +19,12 @@ App.factory('VoteService', ['$http', '$q', function($http, $q) {
 								console.error('Error getting votes');
 								return $q.reject(errResponse);
 							});
+				},
+				getProperties : function() {
+					return $http.get('http://localhost:8080/angular.property').then(
+							function (response) {
+								return response;						
+				      });
 				}
 			};
 		} ]);
