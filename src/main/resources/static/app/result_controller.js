@@ -1,6 +1,8 @@
 'use strict';
 
 App.controller('ResultController', ['$scope', '$window', '$location', 'highchartsNG', 'ResultService',  function($scope, $window, $location, highchartsNG, ResultService) {
+
+			
 			$scope.partialResults = {
 					optionOnePercentage: '',
 					optionTwoPercentage: ''

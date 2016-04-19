@@ -1,6 +1,6 @@
 'use strict';
 
-var App = angular.module('myApp', ['ngRoute', 'ui.grid', 'highcharts-ng', 'noCAPTCHA']);
+var App = angular.module('myApp', ['ngRoute', 'ui.grid', 'highcharts-ng', 'noCAPTCHA', 'timer']);
 
 App.config(function ($routeProvider, $locationProvider) { 
 	  $routeProvider 

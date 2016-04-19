@@ -1,6 +1,7 @@
 'use strict';
 
-App.controller('VoteController', ['$scope', '$window', '$location', 'VoteService', 'noCAPTCHA', function($scope, $window, $location, VoteService) {
+App.controller('VoteController', ['$scope', '$window', '$location', 
+                                  'VoteService', 'noCAPTCHA', function($scope, $window, $location, VoteService) {
 			$scope.gRecaptchaResponse = '';
 			var self = this;
 			self.vote = {

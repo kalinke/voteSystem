@@ -45,10 +45,6 @@ a:hover{
 	font-family: arial;
 }
 
-.op img{
-	border: solid 1px #dbdbe8;
-}
-
 .op:hover img {
 	cursor: pointer; 
 	cursor: hand;
