@@ -1,7 +1,8 @@
 'use strict';
 
 App.controller('ResultController', ['$scope', '$window', '$location', 'highchartsNG', 'ResultService',  function($scope, $window, $location, highchartsNG, ResultService) {
-
+	
+			$scope.timeToFinish = 80000;
 			
 			$scope.partialResults = {
 					optionOnePercentage: '',
