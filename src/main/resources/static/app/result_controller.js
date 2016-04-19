@@ -1,7 +1,8 @@
 'use strict';
 
-App.controller('ResultController', ['$scope', '$window', '$location', 'highchartsNG', 'ResultService',  function($scope, $window, $location, highchartsNG, ResultService) {
+App.controller('ResultController', ['$scope', '$rootScope', '$window', '$location', 'highchartsNG', 'ResultService',  function($scope, $rootScope, $window, $location, highchartsNG, ResultService) {
 	
+			$scope.userOption = $rootScope.userOption;
 			$scope.timeToFinish = 80000;
 			
 			$scope.partialResults = {
@@ -12,6 +13,7 @@ App.controller('ResultController', ['$scope', '$window', '$location', 'highchart
 			self.partialResults = function() {
 				ResultService.listPartialVotes().then(
 				function(response){
+					
 					$scope.partialResults.optionOnePercentage = response.data.optionOnePercentage;
 					$scope.partialResults.optionTwoPercentage = response.data.optionTwoPercentage;
 					$scope.highchartsNG = {

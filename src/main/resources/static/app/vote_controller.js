@@ -1,7 +1,7 @@
 'use strict';
 
-App.controller('VoteController', ['$scope', '$window', '$location', 
-                                  'VoteService', 'noCAPTCHA', function($scope, $window, $location, VoteService) {
+App.controller('VoteController', ['$scope', '$rootScope', '$window', '$location', 
+                                  'VoteService', 'noCAPTCHA', function($scope, $rootScope, $window, $location, VoteService) {
 			var self = this;	
 			self.vote = {
 					id : null,
@@ -32,6 +32,7 @@ App.controller('VoteController', ['$scope', '$window', '$location',
 					alert('Por favor resolva o CAPTCHA antes de votar!');
 				}else{
 					self.vote.option = option;
+					$rootScope.userOption = option;
 					VoteService.submitVote(self.vote).then(
 					function(response){
 						$location.path('/resultado');
