@@ -64,8 +64,10 @@ cd target/
 java -jar bbbvoting-"versao".jar
 ```
 Por padrão acessar a URL http://ip:8080 que o sistema já estará iniciado, também é possível configurar porta e ContextRoot adicionando as seguintes configurações ao arquivo application.properties
+```
 server.contextPath=/contextroot
 server.port=1234
+```
 
 - Serviços REST estão na URL http://ip:porta/"serviço"
   - http://ip:porta/vote GET - retorna o percentual atual da votação
