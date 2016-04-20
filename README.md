@@ -32,22 +32,56 @@ No caso do Bootstrap é a facilidade com que conseguimos incluir e modificar os 
 Em geral nas empresas que trabalhei todas possuem os componentes como a barra superior da globo.com já desenvolvido e em um repositório para uso comum, por isso tentei apenas simular no layout a inclusão da barra da globo.com e o header do big brother brasil. 
 
 # Execução
+
+Download 
 ```
 git clone https://github.com/SelecaoGlobocom/kalinke.git
 cd "diretorio_de_download"
 mvn package
-
-para rodar a aplicação
-mvn spring-boot:run 
-OU possível utilizar a própria JVM para execução
-cd target/
-java -jar bbbvoting-"versao".jar
-
 ```
 
+Editar as configurações do banco de dados com informações da string de conexão do mysql e usuário e senha no arquivo src/main/resources/application.properties. O JPA está configurado para crias as tabelas automáticamente.
 
+spring.datasource.url: jdbc:mysql://IP:PORT/DATABASE
+spring.datasource.username=USER
+spring.datasource.password=PASSWORD
 
+Caso o serviço não seja executado localmente, é necessário desativar o reCAPTCHA pois ele depende de uma key de API para cada domínio.
+Para a desativação para editar o arquivo src/main/resources/static/angular.property
+"enableCaptcha": false
 
+Para rodar a aplicação com o próprio Spring
+```
+mvn spring-boot:run 
+```
+Ou é possível utilizar a própria JVM para execução
+```
+cd target/
+java -jar bbbvoting-"versao".jar
+```
+Por padrão acessar a URL http://ip:8080 que o sistema já estará iniciado, também é possível configurar porta e ContextRoot adicionando as seguintes configurações ao arquivo application.properties
+server.contextPath=/contextroot
+server.port=1234
+
+- Serviços REST estão na URL http://ip:porta/"serviço"
+  - http://ip:porta/vote GET - retorna o percentual atual da votação
+  - http://ip:porta/report GET - retorna as informações para o relatório
+  - http://ip:porta/vote POST(Object vote {"option":""}) envia o voto do usuário
+
+# Testes 
+- Criei alguns testes unitários com mock para a camada de serviço e banco de dados e de integração para o consumo do serviço rest.
+- /src/test/java
+
+# Outras considerações e melhorias
+
+- O Bower acabou baixando todo o source dos plugins dos repositorios do github, não me preocupei com isso nesse primeiro momento, basta apenas fazer um filtro e excluir os arquivos não utilizados do mesmo.
+- É possível fazer uma análise bem detalhada de dependencias e testes com o maven site, basta executar "mvn site" e acompanhar o resultado que é exportado na pasta target do sistema, a primeira intenção era fazer a integração com o próprio GitHub para deploy das estatísticas para o acompanhamento aqui, o GitHub tem todas as bibliotecas necessárias para isso.
+- Como solicitado o relatório está bem simples, optei pelo JDBC Template e um módulo simples de AngularJS pois era mais fácil, rápido e organizado apenas escrever uma query e popular o grid, mas acredito que poderia sim obter muito mais informações nos votos, como por exemplo a localização do usuário e utilizar algum framework de reports para análises estatísticas dos votos.
+- O Catpcha foi apenas uma das soluções que pensei para evitar votos de robos, acredito também que é necessário uma proteção adicional na chamada do POST algo como limitação temporal de votos, limitação do IP, algo a ser discutido com segurança/infraestrutura acredito. - Não executei nenhum tipo de tunning para o MySQL mas sei que nas configurações dele é bem possível.
+- O Spring tem integração com muitos frameworks de cluster e escalabilidade, posso citar como exemplo o Spring for Apache Hadoop (http://projects.spring.io/spring-hadoop).
+- Implementei apenas um mock do tempo para fim da votação, o que faria seria a inclusão de uma tabela com propriedades do sistema com a data limite do sistema e não permitiria a votação após o tempo excedido, caso o usuário entrasse na URL para votar após o tempo iria ser redirecionado até a tela de resultados.
+
+# Manutenção do texto antigo
 
 ## Desenvolvedor de software - RJ - Plataforma de Vendas
 
