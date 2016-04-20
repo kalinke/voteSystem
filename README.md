@@ -42,13 +42,17 @@ mvn package
 
 Editar as configurações do banco de dados com informações da string de conexão do mysql e usuário e senha no arquivo src/main/resources/application.properties. O JPA está configurado para crias as tabelas automáticamente.
 
+```
 spring.datasource.url: jdbc:mysql://IP:PORT/DATABASE
 spring.datasource.username=USER
 spring.datasource.password=PASSWORD
+```
 
 Caso o serviço não seja executado localmente, é necessário desativar o reCAPTCHA pois ele depende de uma key de API para cada domínio.
 Para a desativação para editar o arquivo src/main/resources/static/angular.property
+```
 "enableCaptcha": false
+```
 
 Para rodar a aplicação com o próprio Spring
 ```
