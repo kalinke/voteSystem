@@ -7,9 +7,9 @@
 
 # Configurações Gerais
 - Spring Boot 1.3.3 para o back-end
-- AngularJS e Bootstrap para a web
-- Maven 3 para controle de dependências no backend
-- Bower para controle de dependências web
+- AngularJS e Bootstrap para o front-end
+- Maven 3 para controle de dependências no back-end
+- Bower para controle de dependências do front-end
 - Testes com JUnit e Mockito
 
 # Considerações back-end
