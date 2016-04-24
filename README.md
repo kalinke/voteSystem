@@ -74,6 +74,8 @@ server.port=1234
   - http://ip:porta/report GET - retorna as informações para o relatório
   - http://ip:porta/vote POST(Object vote {"option":""}) envia o voto do usuário
 
+- URL Relatório Resultados: http://ip:porta/#/relatorio
+
 # Testes 
 - Criei alguns testes unitários com mock para a camada de serviço e banco de dados e de integração para o consumo do serviço rest.
 - /src/test/java
